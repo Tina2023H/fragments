@@ -1,116 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="en" data-theme=""><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>Research Note-0 · </title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Research Note-0 | Tina&#39;s notes</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Lessons for multi-GPU training
-This is the learning note when I was trying to run experiments on multiple GPUs.
-Decide on batch size convention
-Per-GPU batch size:what you pass to your dataloader(batch_size=..)
-Effective batch size : per_gpu_batch_size * num_gpus*grad_accum_steps
-grad_accum_steps: refers to how many steps updating the gradient, in my case grad_accum_steps=1
-Check sampler
-Single gpu: randomsampler.
-Multi GPU(DDP): Lightning automatically injects DistributedSampler.
-Adjust batch size or learning rate
-If you want the same effective batch size across 1-GPU and 2-GPU runs, divide your batch_size by num_gpus.">
     <meta name="generator" content="Hugo 0.163.3">
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
-    
-
-    <link rel="stylesheet" href="/ananke/css/main.css">
-    <script>
-  (function () {
-    "use strict";
-
-    
-    
-    function revealButtons() {
-      var buttons = document.querySelectorAll(".code-block .code-copy[hidden]");
-      for (var i = 0; i < buttons.length; i++) {
-        buttons[i].hidden = false;
-      }
-    }
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", revealButtons);
-    } else {
-      revealButtons();
-    }
-
-    function flash(button) {
-      var label = button.querySelector(".code-copy-label");
-      var previous = label ? label.textContent : null;
-      button.classList.add("is-copied");
-      if (label) label.textContent = "Copied";
-      window.setTimeout(function () {
-        button.classList.remove("is-copied");
-        if (label && previous !== null) label.textContent = previous;
-      }, 2000);
-    }
-
-    function legacyCopy(text) {
-      var area = document.createElement("textarea");
-      area.value = text;
-      area.setAttribute("readonly", "");
-      area.style.position = "absolute";
-      area.style.left = "-9999px";
-      document.body.appendChild(area);
-      area.select();
-      var ok = false;
-      try {
-        ok = document.execCommand("copy");
-      } catch (e) {
-        ok = false;
-      }
-      document.body.removeChild(area);
-      return ok;
-    }
-
-    function copyFrom(button) {
-      var container = button.closest(".code-block");
-      if (!container) return;
-      var pre = container.querySelector("pre");
-      if (!pre) return;
-      var source = pre.querySelector("code") || pre;
-      var text = source.innerText;
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(
-          function () { flash(button); },
-          function () { if (legacyCopy(text)) flash(button); }
-        );
-      } else if (legacyCopy(text)) {
-        flash(button);
-      }
-    }
-
-    document.addEventListener("click", function (event) {
-      var button = event.target.closest(".code-copy");
-      if (button) copyFrom(button);
-    });
-  })();
-</script>
-
-    
-      
-
-    
-
-    
-
-    
-      <link rel="canonical" href="http://localhost:1313/research/note1/">
-    
-
-    
-    
     <meta property="og:url" content="http://localhost:1313/research/note1/">
 	<meta property="og:site_name" content="Tina&#39;s notes">
 	<meta property="og:title" content="Research Note-0">
@@ -127,17 +20,73 @@ Adjust batch size or learning rate If you want the same effective batch size acr
 		<meta property="article:published_time" content="2026-07-18T12:29:35+01:00">
 		<meta property="article:modified_time" content="2026-07-18T12:29:35+01:00">
 
-	<meta itemprop="name" content="Research Note-0">
-	<meta itemprop="description" content="Lessons for multi-GPU training This is the learning note when I was trying to run experiments on multiple GPUs.
-Decide on batch size convention Per-GPU batch size:what you pass to your dataloader(batch_size=..)
-Effective batch size : per_gpu_batch_size * num_gpus*grad_accum_steps
-grad_accum_steps: refers to how many steps updating the gradient, in my case grad_accum_steps=1
-Check sampler Single gpu: randomsampler.
-Multi GPU(DDP): Lightning automatically injects DistributedSampler.
-Adjust batch size or learning rate If you want the same effective batch size across 1-GPU and 2-GPU runs, divide your batch_size by num_gpus.">
-	<meta itemprop="datePublished" content="2026-07-18T12:29:35+01:00">
-	<meta itemprop="dateModified" content="2026-07-18T12:29:35+01:00">
-	<meta itemprop="wordCount" content="510">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="">
+    
+    
+    
+    <link rel="stylesheet" type="text/css" href="http://localhost:1313/css/style.min.565d8c479597aa43658922d4b31e286529a7525a22c9546fa1018fc5e5ef6d86.css" integrity="sha256-Vl2MR5WXqkNliSLUsx4oZSmnUloiyVRvoQGPxeXvbYY=" crossorigin="anonymous" type="text/css">
+
+    
+    
+    
+    <script type="text/javascript" src="http://localhost:1313/js/heyo-header.min.a3fa728a9f57833a31dfb45c48caaf1e4890c8c97f07bd7133fc2359745edb5d.js" integrity="sha256-o/pyip9Xgzox37RcSMqvHkiQyMl/B71xM/wjWXRe210=" crossorigin="anonymous"></script>
+
+    
+    
+    <link rel="stylesheet" type="text/css" href="http://localhost:1313/css/fonts.eeff030117c38dfb46c03443cca6e372225d69e4bc724e8ea1e536ce42020038.css" integrity="sha256-7v8DARfDjftGwDRDzKbjciJdaeS8ck6OoeU2zkICADg=" crossorigin="anonymous">
+
+    
+    
+    
+    <script type="text/javascript" src="http://localhost:1313/js/sidebar-toc.min.788b639e2ec681549740b90b3b865d5f9e1789e3ca9c06ccc45d65655434c954.js" integrity="sha256-eItjni7GgVSXQLkLO4ZdX54XiePKnAbMxF1lZVQ0yVQ=" crossorigin="anonymous"></script>
+
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js" defer></script>
+
+        
+
+        
+        
+        <script type="text/javascript" src="http://localhost:1313/js/sketch-graph.03320725b21ce4317bd5ed669009dc0a23c081238ef7f7bc008a228b43a82a1b.js" integrity="sha256-AzIHJbIc5DF71e1mkAncCiPAgSOO9/e8AIoii0OoKhs=" crossorigin="anonymous" defer></script>
+
+        
+        
+        <script type="text/javascript" src="http://localhost:1313/js/sketch-digitalRain.b89bd8d6657a76e563f32f797b8ae5dd3aefcb6f37fb071f8885bd3d4deb2c32.js" integrity="sha256-uJvY1mV6duVj8y95e4rl3Trvy283&#43;wcfiIW9PU3rLDI=" crossorigin="anonymous" defer></script>
+
+        
+        
+        <script type="text/javascript" src="http://localhost:1313/js/sketch-circleBrushStrokes.fc8dbdf1eefdd31d098396d46dfb4063b38ffc0314ff5b649924c29e42f40c2a.js" integrity="sha256-/I298e790x0Jg5bUbftAY7OP/AMU/1tkmSTCnkL0DCo=" crossorigin="anonymous" defer></script>
+
+        
+        
+        <script type="text/javascript" src="http://localhost:1313/js/sketch-boids.d7c75b35fd98a9ac563d804fdc56f9b7b7a810e3cfca2fcedfb3a2b44eedb672.js" integrity="sha256-18dbNf2YqaxWPYBP3Fb5t7eoEOPPyi/O37OitE7ttnI=" crossorigin="anonymous" defer></script>
+
+        
+        
+        <script type="text/javascript" src="http://localhost:1313/js/sketch-meta.15db04e8601db69d0ec576ef1d2ea7474e342cfbc3bc93b82d205b966ef8ddb9.js" integrity="sha256-FdsE6GAdtp0OxXbvHS6nR040LPvDvJO4LSBblm743bk=" crossorigin="anonymous" defer></script>
+
+        
+        
+        <script type="text/javascript" src="http://localhost:1313/js/sidebar-sketch.min.f0548f96157a894cc2ebd2134df3e0821b0de5c057b927c69dbe084d3a9260ea.js" integrity="sha256-8FSPlhV6iUzC69ITTfPgghsN5cBXuSfGnb4ITTqSYOo=" crossorigin="anonymous" defer></script>
+    
+    
+    
+    <link rel="shortcut icon" href="http://localhost:1313/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+    <link rel="canonical" href="http://localhost:1313/research/note1/">
+    
+    
+    
+    
+    
+
+    
+    
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Research Note-0">
 	<meta name="twitter:description" content="Lessons for multi-GPU training This is the learning note when I was trying to run experiments on multiple GPUs.
@@ -148,53 +97,77 @@ Check sampler Single gpu: randomsampler.
 Multi GPU(DDP): Lightning automatically injects DistributedSampler.
 Adjust batch size or learning rate If you want the same effective batch size across 1-GPU and 2-GPU runs, divide your batch_size by num_gpus.">
 
-	
-  </head><body class="ma0 avenir bg-near-white development is-page is-page page-note1">
-   
-  
-
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l center items-center justify-between">
-    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
-      
-        Tina&#39;s notes
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-      <div class="ananke-socials"></div>
-
+</head><body>
+        <div class="main">
+            <div class="page-top">
+    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    <ul class="nav" id="navMenu">
+        
+        
+            
+            <li><a  href="/research/"  title="">Research</a></li>
+        
+            
+            <li><a  href="/posts/"  title="">Posts</a></li>
+        
+        <li class="grow"></li>
+        
+        <li>
+            <a class="theme-switch" title="Switch Theme">
+                <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+            <div class="sidebar" id="sidebar">
+    <div class="top-toc">
+        <img src="http://localhost:1313/" alt="profile picture">
+        
+        <a href="/"></a>
     </div>
-  </div>
-</nav>
+    
+    <div class="middle-sidebar grow" id="middle-sidebar">
+        
+            
+            
+                
+            
 
+            
+                
+                
+                
+                
+                <div
+                    id="sidebar-sketch"
+                    data-sketch="meta"
+                    data-sketch-starting=""
+                    data-sketch-show-hover="true"></div>
+            
+        
     </div>
-  </header>
 
+    <div class="footer">
+        <ul class="social-links">
+            
+        </ul>
 
-<main class="pb7" role="main">
-  
-
-  <article class="page-note1 flex-l mw7 center ph3 flex-wrap justify-between">
-    <header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked ttu">
-    <a class="link dim" href="http://localhost:1313/research/">Researches</a>
-  </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">Research Note-0</h1>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2026-07-18T12:29:35+01:00">July 18, 2026</time>
-      
-
-      
-      
-    </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><h1 id="lessons-for-multi-gpu-training">Lessons for multi-GPU training</h1>
+        <div class="by">by  <b>·</b> 2026</div>
+    </div>
+</div>
+            <div class="content">
+<div class="post">
+    
+    <div class="post-title">
+        <h1>Research Note-0</h1>
+        
+    </div>
+    <div class="post-content">
+        <h1 id="lessons-for-multi-gpu-training">Lessons for multi-GPU training</h1>
 <p>This is the learning note when I was trying to run experiments on multiple GPUs.</p>
 <h2 id="decide-on-batch-size-convention">Decide on batch size convention</h2>
 <p>Per-GPU batch size:what you pass to your dataloader(batch_size=..)</p>
@@ -209,35 +182,23 @@ Adjust batch size or learning rate If you want the same effective batch size acr
 <p>Alternatively, you need to keep the same batch_size per GPU and scale the learning rate (linear scaling rule). i.e. , For 1GPU, bs = 256, lr = 0.1;  then for 2GPUS, bs=256 for each rank, total_bs = 512, lr = 0.2</p>
 <h2 id="sanity-check-logging">Sanity check logging</h2>
 <p>Print inside training_step:</p>
-<div class="code-block">
-    <button class="code-copy" type="button" hidden aria-label="Copy code to clipboard">
-      <span class="code-copy-label" aria-hidden="true">Copy</span>
-    </button>
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>global_rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Per-GPU batch size: </span><span style="color:#e6db74">{</span>batch<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">, Effective batch size: </span><span style="color:#e6db74">{</span>batch<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">*</span>trainer<span style="color:#f92672">.</span>world_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)</span></span></code></pre></div>
-  </div><h2 id="evaluation-consistency">Evaluation consistency</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>global_rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Per-GPU batch size: </span><span style="color:#e6db74">{</span>batch<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">, Effective batch size: </span><span style="color:#e6db74">{</span>batch<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">*</span>trainer<span style="color:#f92672">.</span>world_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="evaluation-consistency">Evaluation consistency</h2>
 <p>For dataloader, ensure your validation/test loaders are created with shuffle=False</p>
 <h2 id="randomness-control">Randomness control</h2>
 <p>Set random seed for each run, to get reproduced results, i.e., pl.seed_everything(seed)</p>
 <h2 id="some-pitfalls">Some pitfalls</h2>
 <p>Do not use the shape of tensor to do some computation: i.e. when computing attention score, the dim of each head, use the rep-computed value, not the shape of the tensor.</p>
 <p>When I tried to share weights between the embeddings of encoder and decoder, I pass them as parameters into a class, the problem is that creating them outside of the model does not update the internal registry. PyTorch didn’t update the internal parameter registry correctly inside proj. The nn.Module that you passed to buildModel already had its own proj._parameters[&lsquo;weight&rsquo;] pointing to the original proj.weight. Your reassignment didn’t re-register it, so optimizers don’t see the shared parameter properly. But if you create them inside of the model’s <strong>init</strong>, it immediately updates the internal registry of the newly constructed module.  Or you can create them outside of the model like this :</p>
-<div class="code-block">
-    <button class="code-copy" type="button" hidden aria-label="Copy code to clipboard">
-      <span class="code-copy-label" aria-hidden="true">Copy</span>
-    </button>
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>emb <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(vocab_size, d_model)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>emb <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(vocab_size, d_model)
 </span></span><span style="display:flex;"><span>proj <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(d_model, vocab_size, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Remove proj’s old parameter and register emb.weight</span>
 </span></span><span style="display:flex;"><span>proj<span style="color:#f92672">.</span>weight <span style="color:#f92672">=</span> emb<span style="color:#f92672">.</span>weight <span style="color:#75715e"># this only rebinds the attribute, this means simply making proj.weight point to emb.weight instead. But the module’s internal parameter registry (proj._parameters[&#39;weight&#39;]) still points to the old original parameter.</span>
-</span></span><span style="display:flex;"><span>proj<span style="color:#f92672">.</span>register_parameter(<span style="color:#e6db74">&#39;weight&#39;</span>, emb<span style="color:#f92672">.</span>weight) <span style="color:#75715e">#  this updates proj._parameters to point to emb.weight</span></span></span></code></pre></div>
-  </div><p>my previous code is:</p>
-<div class="code-block">
-    <button class="code-copy" type="button" hidden aria-label="Copy code to clipboard">
-      <span class="code-copy-label" aria-hidden="true">Copy</span>
-    </button>
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelB</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>proj<span style="color:#f92672">.</span>register_parameter(<span style="color:#e6db74">&#39;weight&#39;</span>, emb<span style="color:#f92672">.</span>weight) <span style="color:#75715e">#  this updates proj._parameters to point to emb.weight</span>
+</span></span></code></pre></div><p>my previous code is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelB</span>(nn<span style="color:#f92672">.</span>Module):
 </span></span><span style="display:flex;"><span>    define <span style="color:#a6e22e">__init__</span>(self, embed, proj):
 </span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init()
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>embed <span style="color:#f92672">=</span> embed
@@ -248,13 +209,9 @@ Adjust batch size or learning rate If you want the same effective batch size acr
 </span></span><span style="display:flex;"><span>    proj <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(d_model, v_s, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 </span></span><span style="display:flex;"><span>    proj<span style="color:#f92672">.</span>weights <span style="color:#f92672">=</span> emb<span style="color:#f92672">.</span>weights <span style="color:#75715e">#proj.weights still point to the old orginal parameter</span>
 </span></span><span style="display:flex;"><span>    modelb <span style="color:#f92672">=</span> ModelB(emb, proj)
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> modelb</span></span></code></pre></div>
-  </div><p>correct version:</p>
-<div class="code-block">
-    <button class="code-copy" type="button" hidden aria-label="Copy code to clipboard">
-      <span class="code-copy-label" aria-hidden="true">Copy</span>
-    </button>
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelB</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> modelb
+</span></span></code></pre></div><p>correct version:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelB</span>(nn<span style="color:#f92672">.</span>Module):
 </span></span><span style="display:flex;"><span>    define <span style="color:#a6e22e">__init__</span>(self, v_s, d_model):
 </span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init()
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>embed <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(v_s, d_model)
@@ -264,13 +221,9 @@ Adjust batch size or learning rate If you want the same effective batch size acr
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">createModelB</span>():
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    modelb <span style="color:#f92672">=</span> ModelB(v_s, d_model)
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> modelb</span></span></code></pre></div>
-  </div><p>another correct way:</p>
-<div class="code-block">
-    <button class="code-copy" type="button" hidden aria-label="Copy code to clipboard">
-      <span class="code-copy-label" aria-hidden="true">Copy</span>
-    </button>
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelB</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> modelb
+</span></span></code></pre></div><p>another correct way:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelB</span>(nn<span style="color:#f92672">.</span>Module):
 </span></span><span style="display:flex;"><span>    define <span style="color:#a6e22e">__init__</span>(self, embed, proj):
 </span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init()
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>embed <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(v_s, d_model)
@@ -283,53 +236,42 @@ Adjust batch size or learning rate If you want the same effective batch size acr
 </span></span><span style="display:flex;"><span>    proj<span style="color:#f92672">.</span>weight <span style="color:#f92672">=</span> embed<span style="color:#f92672">.</span>weight
 </span></span><span style="display:flex;"><span>    proj<span style="color:#f92672">.</span>register_parameter(<span style="color:#e6db74">&#39;weight&#39;</span>, embed<span style="color:#f92672">.</span>weight)
 </span></span><span style="display:flex;"><span>    modelb <span style="color:#f92672">=</span> ModelB(embed, proj)
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> modelb</span></span></code></pre></div>
-  </div><ul class="pa0">
-  
-</ul><ul class="pa0">
-  
-</ul>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> modelb
+</span></span></code></pre></div>
+    </div>
+    <div class="post-footer">
+        <div class="info">
+            
+            
+        </div>
+        
 
-      
-    </div></article>
-</main><footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
-    &copy;  Tina's notes 2026 
-  </a>
-    <div><div class="ananke-socials"></div>
+
+    </div>
+    
 </div>
-  </div>
-</footer>
-</body>
+
+                <div class="grow"></div>
+                <div class="built-with">
+    Built with <a href="https://gohugo.io/">Hugo</a> <b>·</b> Using the <a href="https://github.com/LucasVadilho/heyo-hugo-theme">heyo</a> theme
+</div>
+            </div>
+        </div>
+        
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha512-3M00D/rn8n+2ZVXBO9Hib0GKNpkm8MSUU/e2VNthDyBYxKWG+BftNYYcuEjXlyrSO637tidzMBXfE7sQm0INUg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script type="text/javascript">
+            
+            
+            window.MathJax = {
+                tex: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    displayMath: [['$$','$$'], ['\\[', '\\]']]
+                },
+                svg: {
+                    scale: 1.25,
+                }
+            };
+        </script><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.0/es5/tex-mml-svg.min.js" integrity="sha512-/mL9Gs6E5Bz6NtPOr9eY&#43;T8IIdJbo2JL3TudApzFFelwBXEc3TeFLU6kPq122TJROv7jkktuBRkz5h8vGzrsyA==" crossorigin="anonymous"></script>
+    </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
