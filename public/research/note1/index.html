@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Research Note-0 | Tina&#39;s notes</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Lessons for multi-GPU training
+This is the learning note when I was trying to run experiments on multiple GPUs.
+Decide on batch size convention
+Per-GPU batch size:what you pass to your dataloader(batch_size=..)
+Effective batch size : per_gpu_batch_size * num_gpus*grad_accum_steps
+grad_accum_steps: refers to how many steps updating the gradient, in my case grad_accum_steps=1
+Check sampler
+Single gpu: randomsampler.
+Multi GPU(DDP): Lightning automatically injects DistributedSampler.
+Adjust batch size or learning rate
+If you want the same effective batch size across 1-GPU and 2-GPU runs, divide your batch_size by num_gpus.">
+    <meta name="generator" content="Hugo 0.163.3">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    <link rel="stylesheet" href="/ananke/css/main.css">
+    <script>
+  (function () {
+    "use strict";
+
+    
+    
+    function revealButtons() {
+      var buttons = document.querySelectorAll(".code-block .code-copy[hidden]");
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].hidden = false;
+      }
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", revealButtons);
+    } else {
+      revealButtons();
+    }
+
+    function flash(button) {
+      var label = button.querySelector(".code-copy-label");
+      var previous = label ? label.textContent : null;
+      button.classList.add("is-copied");
+      if (label) label.textContent = "Copied";
+      window.setTimeout(function () {
+        button.classList.remove("is-copied");
+        if (label && previous !== null) label.textContent = previous;
+      }, 2000);
+    }
+
+    function legacyCopy(text) {
+      var area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "absolute";
+      area.style.left = "-9999px";
+      document.body.appendChild(area);
+      area.select();
+      var ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (e) {
+        ok = false;
+      }
+      document.body.removeChild(area);
+      return ok;
+    }
+
+    function copyFrom(button) {
+      var container = button.closest(".code-block");
+      if (!container) return;
+      var pre = container.querySelector("pre");
+      if (!pre) return;
+      var source = pre.querySelector("code") || pre;
+      var text = source.innerText;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(
+          function () { flash(button); },
+          function () { if (legacyCopy(text)) flash(button); }
+        );
+      } else if (legacyCopy(text)) {
+        flash(button);
+      }
+    }
+
+    document.addEventListener("click", function (event) {
+      var button = event.target.closest(".code-copy");
+      if (button) copyFrom(button);
+    });
+  })();
+</script>
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/research/note1/">
+    
+
+    
+    
+    <meta property="og:url" content="http://localhost:1313/research/note1/">
+	<meta property="og:site_name" content="Tina&#39;s notes">
+	<meta property="og:title" content="Research Note-0">
+	<meta property="og:description" content="Lessons for multi-GPU training This is the learning note when I was trying to run experiments on multiple GPUs.
+Decide on batch size convention Per-GPU batch size:what you pass to your dataloader(batch_size=..)
+Effective batch size : per_gpu_batch_size * num_gpus*grad_accum_steps
+grad_accum_steps: refers to how many steps updating the gradient, in my case grad_accum_steps=1
+Check sampler Single gpu: randomsampler.
+Multi GPU(DDP): Lightning automatically injects DistributedSampler.
+Adjust batch size or learning rate If you want the same effective batch size across 1-GPU and 2-GPU runs, divide your batch_size by num_gpus.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="research">
+		<meta property="article:published_time" content="2026-07-18T12:29:35+01:00">
+		<meta property="article:modified_time" content="2026-07-18T12:29:35+01:00">
+
+	<meta itemprop="name" content="Research Note-0">
+	<meta itemprop="description" content="Lessons for multi-GPU training This is the learning note when I was trying to run experiments on multiple GPUs.
+Decide on batch size convention Per-GPU batch size:what you pass to your dataloader(batch_size=..)
+Effective batch size : per_gpu_batch_size * num_gpus*grad_accum_steps
+grad_accum_steps: refers to how many steps updating the gradient, in my case grad_accum_steps=1
+Check sampler Single gpu: randomsampler.
+Multi GPU(DDP): Lightning automatically injects DistributedSampler.
+Adjust batch size or learning rate If you want the same effective batch size across 1-GPU and 2-GPU runs, divide your batch_size by num_gpus.">
+	<meta itemprop="datePublished" content="2026-07-18T12:29:35+01:00">
+	<meta itemprop="dateModified" content="2026-07-18T12:29:35+01:00">
+	<meta itemprop="wordCount" content="510">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Research Note-0">
+	<meta name="twitter:description" content="Lessons for multi-GPU training This is the learning note when I was trying to run experiments on multiple GPUs.
+Decide on batch size convention Per-GPU batch size:what you pass to your dataloader(batch_size=..)
+Effective batch size : per_gpu_batch_size * num_gpus*grad_accum_steps
+grad_accum_steps: refers to how many steps updating the gradient, in my case grad_accum_steps=1
+Check sampler Single gpu: randomsampler.
+Multi GPU(DDP): Lightning automatically injects DistributedSampler.
+Adjust batch size or learning rate If you want the same effective batch size across 1-GPU and 2-GPU runs, divide your batch_size by num_gpus.">
+
+	
+  </head><body class="ma0 avenir bg-near-white development is-page is-page page-note1">
+   
+  
+
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Tina&#39;s notes
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+<main class="pb7" role="main">
+  
+
+  <article class="page-note1 flex-l mw7 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked ttu">
+    <a class="link dim" href="http://localhost:1313/research/">Researches</a>
+  </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Research Note-0</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2026-07-18T12:29:35+01:00">July 18, 2026</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><h1 id="lessons-for-multi-gpu-training">Lessons for multi-GPU training</h1>
+<p>This is the learning note when I was trying to run experiments on multiple GPUs.</p>
+<h2 id="decide-on-batch-size-convention">Decide on batch size convention</h2>
+<p>Per-GPU batch size:what you pass to your dataloader(batch_size=..)</p>
+<p>Effective batch size : per_gpu_batch_size * num_gpus*grad_accum_steps</p>
+<p>grad_accum_steps: refers to how many steps updating the gradient, in my case grad_accum_steps=1</p>
+<h2 id="check-sampler">Check sampler</h2>
+<p>Single gpu: randomsampler.</p>
+<p>Multi GPU(DDP): Lightning automatically injects DistributedSampler.</p>
+<h2 id="adjust-batch-size-or-learning-rate">Adjust batch size or learning rate</h2>
+<p>If you want the same effective batch size across 1-GPU and 2-GPU runs, divide your batch_size by num_gpus.</p>
+<p>Example: change 1 GPU, batch=256 → 2 GPUs, set batch=128 in your script.</p>
+<p>Alternatively, you need to keep the same batch_size per GPU and scale the learning rate (linear scaling rule). i.e. , For 1GPU, bs = 256, lr = 0.1;  then for 2GPUS, bs=256 for each rank, total_bs = 512, lr = 0.2</p>
+<h2 id="sanity-check-logging">Sanity check logging</h2>
+<p>Print inside training_step:</p>
+<div class="code-block">
+    <button class="code-copy" type="button" hidden aria-label="Copy code to clipboard">
+      <span class="code-copy-label" aria-hidden="true">Copy</span>
+    </button>
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>global_rank <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Per-GPU batch size: </span><span style="color:#e6db74">{</span>batch<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">, Effective batch size: </span><span style="color:#e6db74">{</span>batch<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">*</span>trainer<span style="color:#f92672">.</span>world_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)</span></span></code></pre></div>
+  </div><h2 id="evaluation-consistency">Evaluation consistency</h2>
+<p>For dataloader, ensure your validation/test loaders are created with shuffle=False</p>
+<h2 id="randomness-control">Randomness control</h2>
+<p>Set random seed for each run, to get reproduced results, i.e., pl.seed_everything(seed)</p>
+<h2 id="some-pitfalls">Some pitfalls</h2>
+<p>Do not use the shape of tensor to do some computation: i.e. when computing attention score, the dim of each head, use the rep-computed value, not the shape of the tensor.</p>
+<p>When I tried to share weights between the embeddings of encoder and decoder, I pass them as parameters into a class, the problem is that creating them outside of the model does not update the internal registry. PyTorch didn’t update the internal parameter registry correctly inside proj. The nn.Module that you passed to buildModel already had its own proj._parameters[&lsquo;weight&rsquo;] pointing to the original proj.weight. Your reassignment didn’t re-register it, so optimizers don’t see the shared parameter properly. But if you create them inside of the model’s <strong>init</strong>, it immediately updates the internal registry of the newly constructed module.  Or you can create them outside of the model like this :</p>
+<div class="code-block">
+    <button class="code-copy" type="button" hidden aria-label="Copy code to clipboard">
+      <span class="code-copy-label" aria-hidden="true">Copy</span>
+    </button>
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>emb <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(vocab_size, d_model)
+</span></span><span style="display:flex;"><span>proj <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(d_model, vocab_size, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Remove proj’s old parameter and register emb.weight</span>
+</span></span><span style="display:flex;"><span>proj<span style="color:#f92672">.</span>weight <span style="color:#f92672">=</span> emb<span style="color:#f92672">.</span>weight <span style="color:#75715e"># this only rebinds the attribute, this means simply making proj.weight point to emb.weight instead. But the module’s internal parameter registry (proj._parameters[&#39;weight&#39;]) still points to the old original parameter.</span>
+</span></span><span style="display:flex;"><span>proj<span style="color:#f92672">.</span>register_parameter(<span style="color:#e6db74">&#39;weight&#39;</span>, emb<span style="color:#f92672">.</span>weight) <span style="color:#75715e">#  this updates proj._parameters to point to emb.weight</span></span></span></code></pre></div>
+  </div><p>my previous code is:</p>
+<div class="code-block">
+    <button class="code-copy" type="button" hidden aria-label="Copy code to clipboard">
+      <span class="code-copy-label" aria-hidden="true">Copy</span>
+    </button>
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelB</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    define <span style="color:#a6e22e">__init__</span>(self, embed, proj):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>embed <span style="color:#f92672">=</span> embed
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>proj <span style="color:#f92672">=</span> proj
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">createModelB</span>():
+</span></span><span style="display:flex;"><span>    embed <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(v_s, d_model)
+</span></span><span style="display:flex;"><span>    proj <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(d_model, v_s, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    proj<span style="color:#f92672">.</span>weights <span style="color:#f92672">=</span> emb<span style="color:#f92672">.</span>weights <span style="color:#75715e">#proj.weights still point to the old orginal parameter</span>
+</span></span><span style="display:flex;"><span>    modelb <span style="color:#f92672">=</span> ModelB(emb, proj)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> modelb</span></span></code></pre></div>
+  </div><p>correct version:</p>
+<div class="code-block">
+    <button class="code-copy" type="button" hidden aria-label="Copy code to clipboard">
+      <span class="code-copy-label" aria-hidden="true">Copy</span>
+    </button>
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelB</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    define <span style="color:#a6e22e">__init__</span>(self, v_s, d_model):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>embed <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(v_s, d_model)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>proj <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(d_model, v_s, biad<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>proj<span style="color:#f92672">.</span>weight <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>embed<span style="color:#f92672">.</span>weight
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">createModelB</span>():
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    modelb <span style="color:#f92672">=</span> ModelB(v_s, d_model)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> modelb</span></span></code></pre></div>
+  </div><p>another correct way:</p>
+<div class="code-block">
+    <button class="code-copy" type="button" hidden aria-label="Copy code to clipboard">
+      <span class="code-copy-label" aria-hidden="true">Copy</span>
+    </button>
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelB</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    define <span style="color:#a6e22e">__init__</span>(self, embed, proj):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>embed <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(v_s, d_model)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>proj <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(d_model, v_s, biad<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>proj<span style="color:#f92672">.</span>weight <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>embed<span style="color:#f92672">.</span>weight
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">createModelB</span>():
+</span></span><span style="display:flex;"><span>    embed <span style="color:#f92672">=</span>  nn<span style="color:#f92672">.</span>Embedding(v_s, d_model)
+</span></span><span style="display:flex;"><span>    proj <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(d_model, v_s, biad<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    proj<span style="color:#f92672">.</span>weight <span style="color:#f92672">=</span> embed<span style="color:#f92672">.</span>weight
+</span></span><span style="display:flex;"><span>    proj<span style="color:#f92672">.</span>register_parameter(<span style="color:#e6db74">&#39;weight&#39;</span>, embed<span style="color:#f92672">.</span>weight)
+</span></span><span style="display:flex;"><span>    modelb <span style="color:#f92672">=</span> ModelB(embed, proj)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> modelb</span></span></code></pre></div>
+  </div><ul class="pa0">
+  
+</ul><ul class="pa0">
+  
+</ul>
+
+      
+    </div></article>
+</main><footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  Tina's notes 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

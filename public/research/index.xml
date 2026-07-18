@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Tina&#39;s notes</title>
-		<link>http://localhost:1313/</link>
-		<description>Recent content on Tina&#39;s notes</description>
+		<title>Researches on Tina&#39;s notes</title>
+		<link>http://localhost:1313/research/</link>
+		<description>Recent content in Researches on Tina&#39;s notes</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
@@ -12,20 +12,13 @@
 		
 			<lastBuildDate>Sat, 18 Jul 2026 12:29:35 +0100</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/research/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Research Note-0</title>
 				<link>http://localhost:1313/research/note1/</link>
 				<pubDate>Sat, 18 Jul 2026 12:29:35 +0100</pubDate>
 				<guid>http://localhost:1313/research/note1/</guid>
 				<description>&lt;h1 id=&#34;lessons-for-multi-gpu-training&#34;&gt;Lessons for multi-GPU training&lt;/h1&gt;&#xA;&lt;p&gt;This is the learning note when I was trying to run experiments on multiple GPUs.&lt;/p&gt;&#xA;&lt;h2 id=&#34;decide-on-batch-size-convention&#34;&gt;Decide on batch size convention&lt;/h2&gt;&#xA;&lt;p&gt;Per-GPU batch size:what you pass to your dataloader(batch_size=..)&lt;/p&gt;&#xA;&lt;p&gt;Effective batch size : per_gpu_batch_size * num_gpus*grad_accum_steps&lt;/p&gt;&#xA;&lt;p&gt;grad_accum_steps: refers to how many steps updating the gradient, in my case grad_accum_steps=1&lt;/p&gt;&#xA;&lt;h2 id=&#34;check-sampler&#34;&gt;Check sampler&lt;/h2&gt;&#xA;&lt;p&gt;Single gpu: randomsampler.&lt;/p&gt;&#xA;&lt;p&gt;Multi GPU(DDP): Lightning automatically injects DistributedSampler.&lt;/p&gt;&#xA;&lt;h2 id=&#34;adjust-batch-size-or-learning-rate&#34;&gt;Adjust batch size or learning rate&lt;/h2&gt;&#xA;&lt;p&gt;If you want the same effective batch size across 1-GPU and 2-GPU runs, divide your batch_size by num_gpus.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>My First Post</title>
-				<link>http://localhost:1313/posts/my-first-post/</link>
-				<pubDate>Thu, 25 Jun 2026 12:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/posts/my-first-post/</guid>
-				<description>&lt;h2 id=&#34;welcome-to-my-website&#34;&gt;Welcome to my website!&lt;/h2&gt;&#xA;&lt;p&gt;I am a PhD student currently. My research interests are transformer/ LLM in mathematical reasoning, specifically in symbolic Differential Equations.&lt;/p&gt;&#xA;&lt;p&gt;This page was built using Hugo. It is incredibly fast and easy to customize.&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>
