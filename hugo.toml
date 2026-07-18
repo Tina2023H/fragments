@@ -1,4 +1,14 @@
 baseURL = 'https://example.org/'
-locale = 'en-us'
+languageCode = 'en-us'
 title = "Tina's notes"
-theme = 'ananke'
+theme = 'heyo'
+
+[[menus.main]]
+name = "Research"
+url = "/research/"
+weight = 1
+
+[[menus.main]]
+name = "Posts"
+url = "/posts/"
+weight = 2
