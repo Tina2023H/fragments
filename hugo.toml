@@ -1,7 +1,7 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = "Tina's notes"
-theme = 'heyo'
+theme = 'ananke'
 
 [[menus.main]]
 name = "Research"
