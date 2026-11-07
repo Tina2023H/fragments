@@ -1,7 +1,7 @@
 baseURL = 'https://tina2023h.github.io/fragments/'
 languageCode = 'en-us'
 title = "Tina's notes"
-theme = 'ananke'
+theme = 'blowfish'
 
 [[menus.main]]
 name = "Research"
