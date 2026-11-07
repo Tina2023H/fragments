@@ -1,50 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tina's notes</title><link>https://tina2023h.github.io/fragments/</link><description>Recent content on Tina's notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2026</copyright><lastBuildDate>Sat, 26 Sep 2026 16:00:00 +0000</lastBuildDate><atom:link href="https://tina2023h.github.io/fragments/index.xml" rel="self" type="application/rss+xml"/><item><title>Symbolic ODEs</title><link>https://tina2023h.github.io/fragments/manuscript/m1/</link><pubDate>Sat, 26 Sep 2026 16:00:00 +0000</pubDate><guid>https://tina2023h.github.io/fragments/manuscript/m1/</guid><description>&lt;h2 class="relative group"&gt;Foreword
- &lt;div id="foreword" class="anchor"&gt;&lt;/div&gt;
- 
- &lt;span
- class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
- &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#foreword" aria-label="Anchor"&gt;#&lt;/a&gt;
- &lt;/span&gt;
- 
-&lt;/h2&gt;
-&lt;p&gt;Current work on Partial differential equations are most focusing on numerical data. However, symbolic expressions are more valuable , in terms of explainable, and analyzable.&lt;/p&gt;
-&lt;p&gt;This work focus on training a transformer model with symbolic ODE expressions. By replacing absolute positional embedding with tree positional embedding, and employed contrastive learning to learn mathematical equivalent but syntactic different expression (i.e., x+1 and 1+x)&lt;/p&gt;</description></item><item><title>Research Note-0</title><link>https://tina2023h.github.io/fragments/research/coding-on-multi-gpus/</link><pubDate>Sat, 18 Jul 2026 12:29:35 +0100</pubDate><guid>https://tina2023h.github.io/fragments/research/coding-on-multi-gpus/</guid><description>&lt;h1 class="relative group"&gt;Lessons for multi-GPU training
- &lt;div id="lessons-for-multi-gpu-training" class="anchor"&gt;&lt;/div&gt;
- 
- &lt;span
- class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
- &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#lessons-for-multi-gpu-training" aria-label="Anchor"&gt;#&lt;/a&gt;
- &lt;/span&gt;
- 
-&lt;/h1&gt;
-&lt;p&gt;This is the learning note when I was trying to run experiments on multiple GPUs.&lt;/p&gt;
-
-&lt;h2 class="relative group"&gt;Decide on batch size convention
- &lt;div id="decide-on-batch-size-convention" class="anchor"&gt;&lt;/div&gt;
- 
- &lt;span
- class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
- &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#decide-on-batch-size-convention" aria-label="Anchor"&gt;#&lt;/a&gt;
- &lt;/span&gt;
- 
-&lt;/h2&gt;
-&lt;p&gt;Per-GPU batch size:what you pass to your dataloader(batch_size=..)&lt;/p&gt;
-&lt;p&gt;Effective batch size : per_gpu_batch_size * num_gpus*grad_accum_steps&lt;/p&gt;
-&lt;p&gt;grad_accum_steps: refers to how many steps updating the gradient, in my case grad_accum_steps=1&lt;/p&gt;</description></item><item><title>About me</title><link>https://tina2023h.github.io/fragments/posts/hello/</link><pubDate>Thu, 25 Jun 2026 12:00:00 +0000</pubDate><guid>https://tina2023h.github.io/fragments/posts/hello/</guid><description>&lt;h2 class="relative group"&gt;Welcome to my website!
- &lt;div id="welcome-to-my-website" class="anchor"&gt;&lt;/div&gt;
- 
- &lt;span
- class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
- &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#welcome-to-my-website" aria-label="Anchor"&gt;#&lt;/a&gt;
- &lt;/span&gt;
- 
-&lt;/h2&gt;
-&lt;p&gt;I am a PhD student currently. My research interests are transformer/ LLM in mathematical reasoning, specifically in symbolic differential equations.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;
-Contact
-&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;&lt;!-- raw HTML omitted --&gt;
-LinkedIn
-&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tina&#39;s notes</title>
+    <link>http://localhost:1313/fragments/</link>
+    <description>Recent content on Tina&#39;s notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2026 Xiyue Fan</copyright>
+    <lastBuildDate>Sat, 26 Sep 2026 16:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/fragments/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Symbolic ODEs</title>
+      <link>http://localhost:1313/fragments/manuscript/m1/</link>
+      <pubDate>Sat, 26 Sep 2026 16:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/fragments/manuscript/m1/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;Foreword&#xA;    &lt;div id=&#34;foreword&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;&#xA;    &#xA;    &lt;span&#xA;        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;&#xA;        &lt;a class=&#34;text-primary-300 dark:text-neutral-700 !no-underline&#34; href=&#34;#foreword&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&#xA;    &lt;/span&gt;&#xA;    &#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Current work on Partial differential equations are most focusing on numerical data. However, symbolic expressions are more valuable , in terms of explainable, and analyzable.&lt;/p&gt;&#xA;&lt;p&gt;This work focus on training a transformer model with symbolic ODE expressions. By replacing absolute positional embedding with tree positional embedding, and employed contrastive learning to learn mathematical equivalent but syntactic different expression (i.e., x+1 and 1+x)&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Research Note-0</title>
+      <link>http://localhost:1313/fragments/research/coding-on-multi-gpus/</link>
+      <pubDate>Sat, 18 Jul 2026 12:29:35 +0100</pubDate>
+      
+      <guid>http://localhost:1313/fragments/research/coding-on-multi-gpus/</guid>
+      <description>&lt;h1 class=&#34;relative group&#34;&gt;Lessons for multi-GPU training&#xA;    &lt;div id=&#34;lessons-for-multi-gpu-training&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;&#xA;    &#xA;    &lt;span&#xA;        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;&#xA;        &lt;a class=&#34;text-primary-300 dark:text-neutral-700 !no-underline&#34; href=&#34;#lessons-for-multi-gpu-training&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&#xA;    &lt;/span&gt;&#xA;    &#xA;&lt;/h1&gt;&#xA;&lt;p&gt;This is the learning note when I was trying to run experiments on multiple GPUs.&lt;/p&gt;&#xA;&#xA;&lt;h2 class=&#34;relative group&#34;&gt;Decide on batch size convention&#xA;    &lt;div id=&#34;decide-on-batch-size-convention&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;&#xA;    &#xA;    &lt;span&#xA;        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;&#xA;        &lt;a class=&#34;text-primary-300 dark:text-neutral-700 !no-underline&#34; href=&#34;#decide-on-batch-size-convention&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&#xA;    &lt;/span&gt;&#xA;    &#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Per-GPU batch size:what you pass to your dataloader(batch_size=..)&lt;/p&gt;&#xA;&lt;p&gt;Effective batch size : per_gpu_batch_size * num_gpus*grad_accum_steps&lt;/p&gt;&#xA;&lt;p&gt;grad_accum_steps: refers to how many steps updating the gradient, in my case grad_accum_steps=1&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>About me</title>
+      <link>http://localhost:1313/fragments/posts/hello/</link>
+      <pubDate>Thu, 25 Jun 2026 12:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/fragments/posts/hello/</guid>
+      <description>&lt;h2 class=&#34;relative group&#34;&gt;Welcome to my website!&#xA;    &lt;div id=&#34;welcome-to-my-website&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;&#xA;    &#xA;    &lt;span&#xA;        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;&#xA;        &lt;a class=&#34;text-primary-300 dark:text-neutral-700 !no-underline&#34; href=&#34;#welcome-to-my-website&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&#xA;    &lt;/span&gt;&#xA;    &#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I am a PhD student currently. My research interests are transformer/ LLM in mathematical reasoning, specifically in symbolic differential equations.&lt;/p&gt;&#xA;&lt;div style=&#34;display: flex; gap: 12px; margin-top: 20px;&#34;&gt;&#xA;&lt;p&gt;&lt;a href=&#34;mailto:X.Fan@soton.ac.uk&#34;&#xA;style=&#34;padding: 10px 16px; border: 1px solid #333; border-radius: 6px; text-decoration: none;&#34;&gt;&#xA;Contact&#xA;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.linkedin.com/in/xiyue-fan-43450b424/&#34;&#xA;target=&#34;_blank&#34;&#xA;rel=&#34;noopener noreferrer&#34;&#xA;style=&#34;padding: 10px 16px; border: 1px solid #333; border-radius: 6px; text-decoration: none;&#34;&gt;&#xA;LinkedIn&#xA;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;This page was built using Hugo. It is incredibly fast and easy to customize.</description>
+      
+    </item>
+    
+  </channel>
+</rss>
