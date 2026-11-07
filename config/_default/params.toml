@@ -1,0 +1,22 @@
+colorScheme = "slate"
+defaultAppearance = "dark"
+autoSwitchAppearance = false
+
+[homepage]
+layout = "background"
+homepageImage = "img/home-background.jpg"
+showRecent = true
+showRecentItems = 5
+
+[article]
+showDate = true
+showReadingTime = true
+showTableOfContents = true
+
+[list]
+showSummary = true
+groupByYear = true
+
+[footer]
+showAppearanceSwitcher = true
+showScrollToTop = true
