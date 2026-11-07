@@ -1,24 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Posts on Tina&#39;s notes</title>
-		<link>http://localhost:1313/fragments/posts/</link>
-		<description>Recent content in Posts on Tina&#39;s notes</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-		
-			<lastBuildDate>Thu, 25 Jun 2026 12:00:00 +0000</lastBuildDate>
-		
-			<atom:link href="http://localhost:1313/fragments/posts/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>My First Post</title>
-				<link>http://localhost:1313/fragments/posts/hello/</link>
-				<pubDate>Thu, 25 Jun 2026 12:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/fragments/posts/hello/</guid>
-				<description>&lt;h2 id=&#34;welcome-to-my-website&#34;&gt;Welcome to my website!&lt;/h2&gt;&#xA;&lt;p&gt;I am a PhD student currently. My research interests are transformer/ LLM in mathematical reasoning, specifically in symbolic Differential Equations.&lt;/p&gt;&#xA;&lt;p&gt;This page was built using Hugo. It is incredibly fast and easy to customize.&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Tina's notes</title><link>https://tina2023h.github.io/fragments/posts/</link><description>Recent content in Posts on Tina's notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2026</copyright><lastBuildDate>Thu, 25 Jun 2026 12:00:00 +0000</lastBuildDate><atom:link href="https://tina2023h.github.io/fragments/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>About me</title><link>https://tina2023h.github.io/fragments/posts/hello/</link><pubDate>Thu, 25 Jun 2026 12:00:00 +0000</pubDate><guid>https://tina2023h.github.io/fragments/posts/hello/</guid><description>&lt;h2 class="relative group"&gt;Welcome to my website!
+ &lt;div id="welcome-to-my-website" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#welcome-to-my-website" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;I am a PhD student currently. My research interests are transformer/ LLM in mathematical reasoning, specifically in symbolic differential equations.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;
+Contact
+&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;
+LinkedIn
+&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;</description></item></channel></rss>

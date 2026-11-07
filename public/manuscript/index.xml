@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Manuscripts on Tina's notes</title><link>https://tina2023h.github.io/fragments/manuscript/</link><description>Recent content in Manuscripts on Tina's notes</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2026</copyright><lastBuildDate>Sat, 26 Sep 2026 16:00:00 +0000</lastBuildDate><atom:link href="https://tina2023h.github.io/fragments/manuscript/index.xml" rel="self" type="application/rss+xml"/><item><title>Symbolic ODEs</title><link>https://tina2023h.github.io/fragments/manuscript/m1/</link><pubDate>Sat, 26 Sep 2026 16:00:00 +0000</pubDate><guid>https://tina2023h.github.io/fragments/manuscript/m1/</guid><description>&lt;h2 class="relative group"&gt;Foreword
+ &lt;div id="foreword" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#foreword" aria-label="Anchor"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;Current work on Partial differential equations are most focusing on numerical data. However, symbolic expressions are more valuable , in terms of explainable, and analyzable.&lt;/p&gt;
+&lt;p&gt;This work focus on training a transformer model with symbolic ODE expressions. By replacing absolute positional embedding with tree positional embedding, and employed contrastive learning to learn mathematical equivalent but syntactic different expression (i.e., x+1 and 1+x)&lt;/p&gt;</description></item></channel></rss>
